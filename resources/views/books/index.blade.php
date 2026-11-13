@@ -39,6 +39,8 @@
     {{-- Daftar Buku --}}
     <h3 class="mb-3 text-lg font-semibold">Koleksi Saat Ini:</h3>
 
+    <h1 class="mb-6 text-2xl font-bold">Total Buku Saat ini {{ $totalbuku }}</h1>
+
     <ul class="list-disc space-y-3 pl-5">
         @forelse ($books as $book)
             <li>

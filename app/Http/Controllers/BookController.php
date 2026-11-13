@@ -11,10 +11,10 @@ class BookController extends Controller
     public function index()
     {
         // Ambil data buku terbaru dari database
-        $books = Book::latest()->get();
-
+        $books = Book::oldest()->limit(2)->get(); 
+        $totalbuku = Book::count(); // Menghitung total buku di database
         // Kirim data $books ke tampilan resources/views/books/index.blade.php
-        return view('books.index', ['books' => $books]);
+        return view('books.index', ['books' => $books, 'totalbuku' => $totalbuku]);
     }
 
     // 2. Menyimpan buku baru dari form

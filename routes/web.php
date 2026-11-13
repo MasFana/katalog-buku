@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::match(
     ['get', 'post'],
@@ -39,3 +39,14 @@ Route::options('/books', function () {
 // Route::head('/books', function () {
 //     return response()->noContent();
 // });
+// Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+//
+// Route::post('/products', [\App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+//
+// Route::delete('/products/{product}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
+//
+// Route::put('/products/{product}', [\App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
+//
+// Route::get('/products/{product}/edit', [\App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+
+Route::resource('/products', \App\Http\Controllers\ProductController::class);

@@ -11,7 +11,7 @@
             Cari
         </button>
     </form>
-
+    
     <ul class="list-disc space-y-3 pl-5">
         @forelse ($books as $book)
             <li><strong>{{ $book->title }}</strong> oleh {{ $book->author }}</li>
