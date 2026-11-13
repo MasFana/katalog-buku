@@ -1,46 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        body { font-family: sans-serif; max-width: 600px;  padding: 0 20px; }
-        .alert { background: #d1fae5; color: #065f46; padding: 10px; border-radius: 6px; margin-bottom: 16px; }
-        .error { color: #dc2626; font-size: 14px; }
-        .add-form { background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; }
-        input { width: 100%; padding: 8px; margin: 6px 0 12px; box-sizing: border-box; }
-        button { background: #2563eb; color: white; border: none; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
-        a { color: #2563eb; text-decoration: none; }
-        .btn-edit {
-            background: #16a34a;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    @extends("layouts.app")
+@extends('layouts.app')
 
-    @section('content')
-    <h1>Edit Buku</h1>
-    <form action="{{ route('books.update', ['id' => $book->id]) }}" method="POST">
-        @csrf
-        @method('PATCH')
-        <label>Judul Buku:</label>
-        <input type="text" name="title" value="{{ old('title', $book->title) }}">
-        @error('title') <div class="error">{{ $message }}</div> @enderror
+@section('content')
+<h1 class="mb-6 text-2xl font-bold">Edit Buku</h1>
 
-        <label>Penulis:</label>
-        <input type="text" name="author" value="{{ old('author', $book->author) }}">
-        @error('author') <div class="error">{{ $message }}</div> @enderror
+<form action="{{ route('books.update', ['id' => $book->id]) }}"
+      method="POST"
+      class="rounded-lg border border-slate-200 bg-slate-100 p-4">
+    @csrf
+    @method('PATCH')
 
-        <button type="submit">Simpan Perubahan</button>
-    </form>
-    @endsection
-</body>
-</html>
+    <label class="block text-sm font-medium">Judul Buku:</label>
+    <input type="text" name="title" value="{{ old('title', $book->title) }}"
+           class="my-1.5 mb-3 w-full rounded-md border border-slate-300 px-2 py-2">
+    @error('title') <div class="text-sm text-red-600">{{ $message }}</div> @enderror
+
+    <label class="block text-sm font-medium">Penulis:</label>
+    <input type="text" name="author" value="{{ old('author', $book->author) }}"
+           class="my-1.5 mb-3 w-full rounded-md border border-slate-300 px-2 py-2">
+    @error('author') <div class="text-sm text-red-600">{{ $message }}</div> @enderror
+
+    <button type="submit"
+            class="cursor-pointer rounded-md bg-blue-600 px-4 py-2.5 text-white hover:bg-blue-700">
+        Simpan Perubahan
+    </button>
+</form>
+@endsection

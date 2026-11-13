@@ -64,7 +64,7 @@ class BookController extends Controller
         $book->update($validated);
 
         // Kembalikan ke halaman detail buku dengan pesan sukses
-        return to_route('books.update', ['id' => $book->id])->with('success', 'Buku berhasil diperbarui!');
+        return to_route('books.show', ['id' => $book->id])->with('success', 'Buku berhasil diperbarui!');
     }
 
     public function destroy(int $id)

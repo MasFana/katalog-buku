@@ -1,30 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Daftar Buku</h1>
+@extends('layouts.app')
 
-    <form action="{{ route('books.search') }}" method="GET">
-        <input
-            type="text"
-            name="query"
-            placeholder="Cari buku..."
-        >
+@section('content')
+<h1 class="mb-6 text-2xl font-bold">Daftar Buku</h1>
 
-        <button type="submit">Cari</button>
-    </form>
+<form action="{{ route('books.search') }}" method="GET" class="mb-6 flex gap-2">
+    <input
+        type="text"
+        name="query"
+        placeholder="Cari buku..."
+        class="flex-1 rounded-md border border-slate-300 px-3 py-2"
+    >
 
-    <ul>
-        @forelse ($books as $book)
-            <li><strong>{{ $book->title }}</strong> oleh {{ $book->author }}</li>
-        @empty
-            <li>Tidak ada buku yang ditemukan.</li>
-        @endforelse
-    </ul>
-</body>
-</html>
+    <button type="submit"
+            class="cursor-pointer rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+        Cari
+    </button>
+</form>
+
+<ul class="list-disc space-y-3 pl-5">
+    @forelse ($books as $book)
+        <li><strong>{{ $book->title }}</strong> oleh {{ $book->author }}</li>
+    @empty
+        <li class="list-none text-slate-500">Tidak ada buku yang ditemukan.</li>
+    @endforelse
+</ul>
+@endsection
